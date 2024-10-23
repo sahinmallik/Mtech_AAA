@@ -7,20 +7,20 @@ void countingSort(vector<int> &arr)
         return;
 
     int maxElement = *max_element(arr.begin(), arr.end());
-    vector<int> count(maxElement + 1, 0);
-    for (int num : arr)
+    vector<vector<int>> count(maxElement + 1);
+
+    for (int i = 0; i < arr.size(); i++)
     {
-        count[num]++;
+        count[arr[i]].push_back(arr[i]);
     }
 
-    int j = 0;
+    int index = 0;
     for (int i = 0; i <= maxElement; i++)
     {
-        while (count[i] > 0)
+        for (auto it : count[i])
         {
-            arr[j] = i;
-            j++;
-            count[i]--;
+            arr[index] = it;
+            index++;
         }
     }
 }
